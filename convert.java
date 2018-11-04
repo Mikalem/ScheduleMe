@@ -1,5 +1,5 @@
 /*
- * Name:	convert:java
+ * Name:	convert.java
  * Author:	Aisha Mohammed
  *
  * Purpose:	Converts Array form for availability to String format and vice versa. 

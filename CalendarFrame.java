@@ -16,7 +16,6 @@ public class CalendarFrame {
 	private static JFrame frame = new JFrame("ScheduleMe Calendar");
 	
 	public static void main() {
-		// Do not change any of the dimensions (at least the x's). Bad things will happen.
 		MonthYearPanel monthp = new MonthYearPanel();
 		monthp.setPreferredSize(new Dimension(100,100));
 
@@ -28,9 +27,18 @@ public class CalendarFrame {
 
 		//getting the placements of the buttons from the DayPanel.
 		int[] placements = new int[7];
-		placements = dayp.getPlacements();
+
 		//Applying the above placements to the buttons in the CalendarPanel.
-		calp.doButtonPlacements(placements);
+		calp.doButtonPlacements();
+		placements = calp.getPlacements();
+		
+		System.out.println("The placements are");
+		for (int i = 0; i < 7; i++)
+		{
+			System.out.println(placements[i]);
+			
+		}
+		dayp.doDayPlacements(placements);
 
 		frame = new JFrame("ScheduleMeCalendar");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);   

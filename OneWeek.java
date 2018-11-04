@@ -26,6 +26,7 @@ public class OneWeek extends Date
 	public void createWeek()
 	{
 		Calendar c1 = Calendar.getInstance();
+		
 		int count = 0;
 		while(count != 7)
 		{

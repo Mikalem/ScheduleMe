@@ -162,7 +162,7 @@ public class gui_final implements ActionListener {
 
 		// General defaults
 		f.setTitle("ScheduleMeResults");
-		f.setSize(1000,800);
+		f.setSize(1000,820);
 		f.setLocationRelativeTo(null);
 		f.setVisible(true);
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

@@ -12,6 +12,13 @@ import javax.swing.*;
 public class DayPanel extends JPanel
 {
 	public int[] placements = new int[7]; // so that other classes will be able to see this.
+	private JLabel day1 = new JLabel("Sunday");
+	private JLabel day2 = new JLabel("Monday");
+	private JLabel day3 = new JLabel("Tuesday");
+	private JLabel day4 = new JLabel("Wednesday");
+	private JLabel day5 = new JLabel("Thursday");
+	private JLabel day6 = new JLabel("Friday");
+	private JLabel day7 = new JLabel("Saturday");
 
 	public DayPanel()
 	{
@@ -25,14 +32,8 @@ public class DayPanel extends JPanel
 		setBackground(panelcol);
 		week.createWeek(); 
 
-		JLabel day1 = new JLabel("Sunday");
-		JLabel day2 = new JLabel("Monday");
-		JLabel day3 = new JLabel("Tuesday");
-		JLabel day4 = new JLabel("Wednesday");
-		JLabel day5 = new JLabel("Thursday");
-		JLabel day6 = new JLabel("Friday");
-		JLabel day7 = new JLabel("Saturday");
-
+//		JLabel day1 = new JLabel("Sunday");
+		
 		day1.setFont(font);
 		day2.setFont(font);
 		day3.setFont(font);
@@ -58,39 +59,43 @@ public class DayPanel extends JPanel
 		add(day6);
 		add(day7);
 
-		int xplacement = 25;
-		int yplacement = 50;
+		
 		//Gets the current size of each JLabel. Will only have to do
 		// this once since they all are the same size.
-		Dimension size = day1.getPreferredSize();
-
-		// Notice all of this had to be done after the addition of the labels.
-		placements[0] = xplacement;
-		day1.setBounds(xplacement, yplacement, size.width, size.height); // Sunday
-		xplacement = xplacement + xdim;
-		placements[1] = xplacement;
-		day2.setBounds(xplacement, yplacement, size.width, size.height); // Monday
-		xplacement = xplacement + xdim;
-		placements[2] = xplacement;
-		day3.setBounds(xplacement, yplacement, size.width, size.height); // Tuesday
-		xplacement = xplacement + xdim + 10;
-		placements[3] = xplacement;
-		day4.setBounds(xplacement, yplacement, size.width, size.height); // Wednesday 
-		xplacement = xplacement + xdim + 35;
-		placements[4] = xplacement;
-		day5.setBounds(xplacement, yplacement, size.width, size.height); // Thursday 
-		xplacement = xplacement + xdim + 25;
-		placements[5] = xplacement;
-		day6.setBounds(xplacement, yplacement, size.width, size.height); // Friday 
-		xplacement = xplacement + xdim;
-		placements[6] = xplacement;
-		day7.setBounds(xplacement, yplacement, size.width, size.height); // Saturday
 
 
+		
 	}
-	// Returns the placements that were given to each of the JLabels (the weekdays).
-	public int [] getPlacements()
+	
+	// Does the placement of the days according to the placements of the buttons	
+	public void doDayPlacements(int [] buttonPlacements)
 	{
-		return placements;
-	}  
+//		int xplacement = 25;
+		int xplacement = 25;
+		int yplacement = 50;
+		Dimension size = day1.getPreferredSize();
+		// Notice all of this had to be done after the addition of the labels.
+		xplacement = buttonPlacements[0];
+		day1.setBounds(xplacement, yplacement, size.width, size.height); // Sunday
+		
+		xplacement = buttonPlacements[1];
+		day2.setBounds(xplacement, yplacement, size.width, size.height); // Monday
+		
+		xplacement = buttonPlacements[2];
+		day3.setBounds(xplacement, yplacement, size.width, size.height); // Tuesday
+
+		
+		xplacement = buttonPlacements[3];
+		day4.setBounds(xplacement, yplacement, size.width, size.height); // Wednesday 
+		
+		xplacement = buttonPlacements[4];
+		day5.setBounds(xplacement, yplacement, size.width, size.height); // Thursday 
+		
+		xplacement = buttonPlacements[5];
+		day6.setBounds(xplacement, yplacement, size.width, size.height); // Friday 
+		
+		xplacement = buttonPlacements[6];
+		day7.setBounds(xplacement, yplacement, size.width, size.height); // Saturday
+				
+	}
 }

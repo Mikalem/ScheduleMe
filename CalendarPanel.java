@@ -40,6 +40,7 @@ public class CalendarPanel extends JPanel {
 			"2:00 PM","2:30 PM", "3:00 PM", "3:30 PM", "4:00 PM", "4:30 PM", "5:00 PM", "5:30 PM", "6:00 PM", "6:30 PM",
 			"7:00 PM", "7:30 PM", "8:00 PM", "8:30 PM", "9:00 PM", "9:30 PM", "10:00 PM", "10:30 PM","11:00 PM", 
 	"11:30 PM"}; 
+	public int[] placements = new int[7]; // so that other classes will be able to see this.
 
 	public CalendarPanel() { 
 		Font buttonFont = new Font("Courier", Font.PLAIN, 20);   // This is the Font of the Weekdays and the Buttons.
@@ -148,11 +149,12 @@ public class CalendarPanel extends JPanel {
 
 	// Gets the placements of elements in other panels(in this case, the placements
 	// of the weekdays in the DayPanel) and applies those same placements to the buttons of this panel.
-	public void doButtonPlacements(int[] placements)
+	public void doButtonPlacements()
 	{
-		int xplacement;
-		int yplacement = 50;	// We will start at this y.
 		int index;
+		int extra = 140;
+		int xplacement = 25;
+		int yplacement = 50;
 
 		// Gets the current size of each JButton. Will only have to do
 		// this once since they all are the same size.
@@ -163,77 +165,72 @@ public class CalendarPanel extends JPanel {
 		int calculate_placement = 0;
 
 		index = week.get_day_of_week(0);
-		xplacement = placements[index - 1];
+		placements[index - 1] = xplacement;
 		b1.setBounds(xplacement, yplacement, buttonsize.width, buttonsize.height);	// Sunday 
 		// Set bounds of the checkable box.
 		timeBoxSun.setBounds(xplacement, yplacement + 55, boxSize.width, boxSize.height);     
 		// If the previous index was the last day of the week, the next few buttons will have
 		// to go on the next line.
-		if (index == 7) {
-			calculate_placement = xplacement;
-			yplacement = 150;
-		}
-
+	
+		xplacement = xplacement + extra;
 		index = week.get_day_of_week(1);
-		xplacement = placements[index - 1];
+		placements[index - 1] = xplacement;
 		b2.setBounds(xplacement, yplacement, buttonsize.width, buttonsize.height);	// Monday    
 		timeBoxMon.setBounds(xplacement, yplacement + 55, boxSize.width, boxSize.height);
-		if (index == 7) {
-			calculate_placement = xplacement;
-			yplacement = 150;
-		}
 
+		
+		xplacement = xplacement + extra;
 		index = week.get_day_of_week(2);
-		xplacement = placements[index - 1];
+		placements[index - 1] = xplacement;
+//		xplacement = placements[index - 1];
 		b3.setBounds(xplacement, yplacement, buttonsize.width, buttonsize.height);	// Tuesday
 		timeBoxTues.setBounds(xplacement, yplacement + 55, boxSize.width, boxSize.height);
-		if (index == 7) 
-		{
-			calculate_placement = xplacement;
-			yplacement = 150;
-		}
-
+		
+		xplacement = xplacement + extra; //+ 10;
 		index = week.get_day_of_week(3);
-		xplacement = placements[index - 1];
+		placements[index - 1] = xplacement;
+//		xplacement = placements[index - 1];
 		b4.setBounds(xplacement, yplacement, buttonsize.width, buttonsize.height);	// Wednesday 
 		timeBoxWed.setBounds(xplacement, yplacement + 55, boxSize.width, boxSize.height); 
-		if (index == 7) {
-			calculate_placement = xplacement;
-			yplacement = 150;
-		}
 
+		xplacement = xplacement + extra;// + 35;
 		index = week.get_day_of_week(4);
-		xplacement = placements[index - 1];
+		placements[index - 1] = xplacement;
+//		xplacement = placements[index - 1];
 		b5.setBounds(xplacement, yplacement, buttonsize.width, buttonsize.height);	// Thursday 
 		timeBoxThurs.setBounds(xplacement, yplacement + 55, boxSize.width, boxSize.height);
-		if (index == 7) {
-			calculate_placement = xplacement;
-			yplacement = 150;
-		}
-
+		
+		xplacement = xplacement + extra;// + 25;
 		index = week.get_day_of_week(5);
-		xplacement = placements[index - 1];
+		placements[index - 1] = xplacement;
+//		xplacement = placements[index - 1];
 		b6.setBounds(xplacement, yplacement, buttonsize.width, buttonsize.height);	// Friday 
 		timeBoxFri.setBounds(xplacement, yplacement + 55, boxSize.width, boxSize.height);
-		if (index == 7) {
-			calculate_placement = xplacement;
-			yplacement = 150;
-		}
-
+		
+		xplacement = xplacement + extra;
 		index = week.get_day_of_week(6);
-		xplacement = placements[index - 1];
+		placements[index - 1] = xplacement;
+//		xplacement = placements[index - 1];
 		b7.setBounds(xplacement, yplacement, buttonsize.width, buttonsize.height);	// Saturday
 		timeBoxSat.setBounds(xplacement, yplacement + 55, boxSize.width, boxSize.height);
-		if (index == 7) {
-			calculate_placement = xplacement;
-			yplacement = 150;
-		}
 
+		calculate_placement = 850;
 		calculate.setBounds(calculate_placement, 210, calcdim.width, calcdim.height);
 		instructions.setBounds(0, 275, labeldim.width, labeldim.height);
 		instructions_ext.setBounds(0, 300, labeldim.width, labeldim.height);
+		System.out.println("The placements after the button placements are");
+		for (int i = 0; i < 7; i++)
+		{
+			System.out.println(placements[i]);
+		}
 
 	}
+	
+	// Returns the placements that were given to each of the JLabels (the weekdays).
+	public int [] getPlacements()
+	{
+		return placements;
+	}  
 
 	// The action listener for the calculate button. Will call the 
 	// backend for all of its calculations.
